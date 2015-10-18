@@ -51,7 +51,7 @@ namespace ToolSQAAutoPracticeFormFramework
         #region Dispose pattern
         private bool _Disposed;
 
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (!_Disposed)
             {
