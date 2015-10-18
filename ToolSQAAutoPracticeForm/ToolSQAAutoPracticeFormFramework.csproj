@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomationFramework.cs" />
+    <Compile Include="AutomationPracticeFormPage.cs" />
+    <Compile Include="FormWidget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
