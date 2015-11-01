@@ -2,10 +2,12 @@
 
 namespace ToolSQAAutoPracticeFormFramework
 {
+    [Flags]
     public enum Gender
     {
-        Male,
-        Female
+        None = 0x0,
+        Male = 0x1,
+        Female = 0x2
     }
 
     [Flags]

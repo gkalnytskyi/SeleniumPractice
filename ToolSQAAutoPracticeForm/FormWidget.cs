@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support;
 
@@ -39,10 +41,34 @@ namespace ToolSQAAutoPracticeFormFramework
             }
         }
 
+        public IEnumerable<IWebElement> GenderSelectionRadioButtons
+        {
+            get
+            {
+                return BaseElement.FindElements(By.CssSelector("[id^=sex-]"));
+            }
+        }
+
         public void SelectGender(Gender sex)
         {
-            var genderRadioButtonId = "sex-" + ((int)sex).ToString();
-            BaseElement.FindElement(By.Id(genderRadioButtonId)).Click();
+            GenderSelectionRadioButtons.
+                Single(x => x.GetAttribute("id") == ("sex-" + ((int)sex-1))).Click();
+        }
+
+        public Gender SelectedGender()
+        {
+            var selectedGenderRadioButton = GenderSelectionRadioButtons.
+                SingleOrDefault(x => x.Selected);
+            if (selectedGenderRadioButton == null)
+            {
+                return Gender.None;
+            }
+            else
+            {
+                var genderRadioButtonId = selectedGenderRadioButton.GetAttribute("id").Trim();
+                return (Gender)Enum.ToObject(typeof(Gender),
+                    ((int)genderRadioButtonId[genderRadioButtonId.Length - 1]) + 1);
+            }
         }
 
         public void SelectYearsOfExperience (int years)

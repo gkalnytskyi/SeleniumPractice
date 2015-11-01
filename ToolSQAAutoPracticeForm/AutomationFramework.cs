@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Chrome;
@@ -34,15 +35,13 @@ namespace ToolSQAAutoPracticeFormFramework
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
 
-            using (Driver = new ChromeDriver(options))
-            {
-                Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(TimeOut));
-            }
+            Driver = new ChromeDriver(options);
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(TimeOut));
         }
 
         private void StopAllDrivers()
         {
-            foreach (var process in Process.GetProcesses("chromedriver"))
+            foreach (var process in Process.GetProcessesByName("chromedriver"))
             {
                 process.Close();
             }

@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ToolSQAAutoPracticeFormFramework
 {
-    class AutomationPracticeFormPage
+    public class AutomationPracticeFormPage
     {
         private AutomationFramework _AF;
 
@@ -15,6 +15,7 @@ namespace ToolSQAAutoPracticeFormFramework
         public AutomationPracticeFormPage(AutomationFramework af)
         {
             _AF = af;
+            form = new FormWidget(_AF);
         }
 
         public void EnterFirstName(string firstName)
@@ -27,6 +28,14 @@ namespace ToolSQAAutoPracticeFormFramework
             form.LastNameTextBox.SendKeys(lastName);
         }
 
+        public void SelectGender(Gender g)
+        {
+            form.SelectGender(g);
+        }
 
+        public Gender SelectedGender()
+        {
+            return form.SelectedGender();
+        }
     }
 }
