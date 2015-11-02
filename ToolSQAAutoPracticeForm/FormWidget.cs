@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.UI;
 
 namespace ToolSQAAutoPracticeFormFramework
 {
@@ -118,49 +118,74 @@ namespace ToolSQAAutoPracticeFormFramework
             switch (autoTool)
             {
                 case TestAutomationTools.QTP:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 0));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 0)).Click();
                     break;
                 case TestAutomationTools.SeleniumIde:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 1));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 1)).Click();
                     break;
                 case TestAutomationTools.SeleniumWebDriver:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 2));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 2)).Click();
                     break;
                 case TestAutomationTools.QTP | TestAutomationTools.SeleniumIde:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 0));
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 1));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 0)).Click();
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 1)).Click();
                     break;
                 case TestAutomationTools.QTP | TestAutomationTools.SeleniumWebDriver:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 0));
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 2));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 0)).Click();
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 2)).Click();
                     break;
                 case TestAutomationTools.SeleniumIde | TestAutomationTools.SeleniumWebDriver:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 1));
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 2));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 1)).Click();
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 2)).Click();
                     break;
                 case TestAutomationTools.QTP |
                      TestAutomationTools.SeleniumIde |
                      TestAutomationTools.SeleniumWebDriver:
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 0));
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 1));
-                    BaseElement.FindElement(By.Id(automationToolCheckboxIdTemplate + 2));
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 0)).Click();
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 1)).Click();
+                    BaseElement.FindElement(
+                        By.Id(automationToolCheckboxIdTemplate + 2)).Click();
                     break;
             }
         }
 
-        public IWebElement ContinentsSelectBox
+        public SelectElement ContinentsSelectBox
         {
             get
             {
-                return BaseElement.FindElement(By.Id("continents"));
+                return new SelectElement(BaseElement.FindElement(By.Id("continents")));
             }
         }
 
-        public IWebElement SeleniumCommandMultiSelectBox
+        public void SelectContinent(string continent)
+        {
+            ContinentsSelectBox.SelectByText(continent);
+        }
+
+        public SelectElement SeleniumCommandMultiSelectBox
         {
             get
             {
-                return BaseElement.FindElement(By.Id("selenium_commands"));
+                return new SelectElement(BaseElement.FindElement(By.Id("selenium_commands")));
+            }
+        }
+
+        public void SelectSeleniumCommands(IEnumerable<string> commands)
+        {
+            foreach (var command in commands)
+            {
+                SeleniumCommandMultiSelectBox.SelectByText(command);
             }
         }
     }

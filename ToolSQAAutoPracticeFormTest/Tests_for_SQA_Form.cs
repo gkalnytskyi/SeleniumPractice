@@ -18,10 +18,19 @@ namespace ToolSQAAutoPracticeFormTest
         }
 
         [Test]
-        public void Test_Select_Gender()
+        public void Test_Fill_in_Form()
         {
+            // Act
             var page = new AutomationPracticeFormPage(af);
             page.SelectGender(Gender.Female);
+            page.SelectTestAutomationTool(TestAutomationTools.QTP |
+                                          TestAutomationTools.SeleniumWebDriver);
+            page.SelectContinent("North America");
+            page.SelectSeleniumCommands(new[]
+            { "Navigation Commands",
+              "Wait Commands",
+              "WebElement Commands"
+            });
         }
 
         [TearDown]

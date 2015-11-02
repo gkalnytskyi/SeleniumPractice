@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
@@ -36,6 +37,21 @@ namespace ToolSQAAutoPracticeFormFramework
         public Gender SelectedGender()
         {
             return form.SelectedGender();
+        }
+
+        public void SelectTestAutomationTool(TestAutomationTools autoTool)
+        {
+            form.SelectTestAutomationTool(autoTool);
+        }
+
+        public void SelectContinent(string continent)
+        {
+            form.SelectContinent(continent);
+        }
+
+        public void SelectSeleniumCommands(IEnumerable<string> commands)
+        {
+            form.SelectSeleniumCommands(commands);
         }
     }
 }
